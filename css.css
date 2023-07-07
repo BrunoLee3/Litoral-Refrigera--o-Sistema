@@ -1,0 +1,28 @@
+.tabela{
+    border: 1px solid red;
+}
+
+.tabela td{
+    border: 1px solid red;
+}
+
+.celula{
+    border: 1px solid red;
+}
+
+form{
+    display: grid;
+    
+}
+
+div{
+    background-color: beige;
+    border: 1px solid red;
+    width: 300px;
+    padding: 20px;
+    margin-left: 450px;
+}
+
+h3{
+    text-align: center;
+}

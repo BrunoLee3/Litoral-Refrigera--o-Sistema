@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <script src="js.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div>
+        <form action="">
+            <h3>Cadastro</h3>
+            Nome Cliente:
+            <input type="text" name="nomeCliente" id="nome"><br>
+            Data:
+            <input type="date" name="data" id="data"><br>
+            Orçamento:
+            <input type="number" name="orcamento" id="orc"> <br>
+            Serviço:
+            <textarea name="servicos" id="serv" cols="30" rows="10"></textarea>
+            <br>
+            <input type="button" id="botao" value="Salvar" onclick="validaServico('cd', 'nome', 'data', 'orc', 'serv')">
+            <br>
+            <button onclick="window.open('planilha.html')">Planilha</button>
+        </form>
+
+        
+    </div>
+</body>
+</html>
