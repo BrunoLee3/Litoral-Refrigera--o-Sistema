@@ -1,15 +1,12 @@
-function validaServico(idCod, idNome, idData, idOrc, idServ) {
-    let codigo = document.getElementById(idCod).value;
+function validaServico(idNome, idData, idOrc, idServ) {
     let nomeCliente = document.getElementById(idNome).value;
     let date = document.getElementById(idData).value;
     let orcamento = document.getElementById(idOrc).value;
     let ser = document.getElementById(idServ).value
     
 
-    if(codigo == "")
-        alert("Erro. Código não pode estar em branco.");
-    
-    else if(nomeCliente == "")
+
+    if(nomeCliente == "")
         alert("Erro. Nome do Cliente não pode estar em branco.");
     
     else if(date == "")
@@ -22,12 +19,12 @@ function validaServico(idCod, idNome, idData, idOrc, idServ) {
         alert("Erro. serviço não pode estar em branco.");
     
     else
-        salvaServico(codigo, nomeCliente, date, parseFloat(orcamento), ser);
+        salvaServico(nomeCliente, date, parseFloat(orcamento), ser);
 
 }
 
-function salvaServico(cod, cliente, date, orcamento, servico){
-    let novoServico = {codigo:cod, nome:cliente, data:date, orcamento: orcamento, Servico:servico};
+function salvaServico(cliente, date, orcamento, servico){
+    let novoServico = {nome:cliente, data:date, orcamento: orcamento, Servico:servico};
     
      if(typeof(Storage) !== "undefined"){
         let servicos = localStorage.getItem("servicos");
