@@ -8,21 +8,38 @@
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
-    <div>
+    <div class="navegacao">
+        <span>Litoral Refrigeração e Climatização</span>
+        <br>
+        <a href="index.html">Cadastro</a> |
+        <a href="planilha.html">Planilha</a>
+    </div>
+
+    <div class="formulario">
         <form action="">
             <h3>Cadastro</h3>
-            Nome Cliente:
-            <input type="text" name="nomeCliente" id="nome"><br>
-            Data:
-            <input type="date" name="data" id="data"><br>
-            Orçamento:
-            <input type="number" name="orcamento" id="orc"> <br>
-            Serviço:
-            <textarea name="servicos" id="serv" cols="30" rows="10"></textarea>
+            Nome do cliente:*
+            <input type="text" name="nomeCliente" id="nome">
             <br>
-            <input type="button" id="botao" value="Salvar" onclick="validaServico('nome', 'data', 'orc', 'serv')">
+            Data:*
+            <input type="date" name="data" id="data">
             <br>
-            <button onclick="window.open('planilha.html')">Planilha</button>
+            Serviço:*
+            <select name="tipo" id="tipo">Tipo
+                <option value="">--Selecione--</option>
+                <option value="1">Instalação</option>
+                <option value="2">Manutenção</option>
+                <option value="3">Limpeza</option>
+            </select>
+            <br>
+            Orçamento:*
+            <input type="number" name="orcamento" id="orcamento"> 
+            <br>
+            Descrição:
+            <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea>
+            <br>
+            <input type="button" id="botao" value="Salvar" onclick="cadastraServico()">
+            <br>
         </form>
 
         

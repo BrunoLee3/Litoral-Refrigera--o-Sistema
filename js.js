@@ -1,66 +1,121 @@
-function validaServico(idNome, idData, idOrc, idServ) {
-    let nomeCliente = document.getElementById(idNome).value;
-    let date = document.getElementById(idData).value;
-    let orcamento = document.getElementById(idOrc).value;
-    let ser = document.getElementById(idServ).value
-    
+class Servico{
+    constructor(nome, data, tipo, orcamento, descricao){
+        this.nome = nome
+        this.data = data 
+        this.tipo = tipo 
+        this. orcamento = orcamento 
+        this.descricao = descricao 
+    }
 
-
-    if(nomeCliente == "")
-        alert("Erro. Nome do Cliente não pode estar em branco.");
-    
-    else if(date == "")
-        alert("Erro. Data não pode estar em branco.");
-    
-    else if(orcamento == "")
-        alert("Erro. orcamento não pode estar em branco.");
-    
-    else if(ser == "")
-        alert("Erro. serviço não pode estar em branco.");
-    
-    else
-        salvaServico(nomeCliente, date, parseFloat(orcamento), ser);
+    validarDados(){
+        if(this.nome == '' || this.data == '' || this.tipo == '' || this.orcamento == ''){
+            return false
+        }else{
+            return true
+        }
+    }
 
 }
 
-function salvaServico(cliente, date, orcamento, servico){
-    let novoServico = {nome:cliente, data:date, orcamento: orcamento, Servico:servico};
-    
-     if(typeof(Storage) !== "undefined"){
-        let servicos = localStorage.getItem("servicos");
-        if(servicos == null) servicos = [];  
-        else
-            servicos = JSON.parse(servicos);
-            servicos.push(novoServico);
-            localStorage.setItem("servicos", JSON.stringify(servicos))
-            alert("Serviço cadastrado com sucesso!");
-            location.reload();
-    }
-    else alert("A versão do seu navegador é muito antiga. Por isso, não será possível executar essa aplicação");
-
-}
-
-
-function exibeServico(){
-    let servicos = localStorage.getItem("servicos")
-    if(servicos==null){
-       document.write("<h2>Não há nenhum serviço cadastrado</h2>");
-    }
-    else{
-        servicos = JSON.parse(servicos);
-        let contador = 1;
-        document.write("<h1>Lista de Atendimentos Registrados</h1>");
+class Bd{
+    constructor(){
+        //capturando o ID de LocalStorage
+        let id = localStorage.getItem('id')
         
-        servicos.forEach(servs => {
-            document.write("<ul>");
-            document.write("<li><strong>Código: </strong>"+ contador + "</li>");
-            document.write("<li><strong>Nome: </strong>" +servs.nome+ "</li>");
-            document.write("<li><strong>Data: </strong>" +servs.data+ "</li>");
-            document.write("<li><strong>Orçamento: </strong>" +servs.orcamento+ "</li>");
-            document.write("<li><strong>Serviço: </strong>" +servs.Servico+ "</li>");
-            document.write("<hr>")
-            document.write("</ul>");
-            contador++;
-        });
+        //se ainda não existe um id em localStorage, cria um com valor 0
+        if(id == null){
+            localStorage.setItem('id', 0)
+        }
     }
+    
+    GeraProxId(){
+        let proxId = localStorage.getItem('id')
+        return parseInt(proxId)+1
+    }
+
+    salvar(servico){
+        //gerando próximo ID
+        let id = this.GeraProxId()
+
+        //armazenando despesa em loca storage
+        localStorage.setItem(id, JSON.stringify(servico))
+
+        //atualizando o novo valor de ID com o próximo ID gerado
+        localStorage.setItem('id', id)
+    }
+
+    recuperarTodosRegistros(){
+        let arrayServicos = []
+
+        let id = localStorage.getItem('id')
+
+        for(let i = 1; i <= id; i++){
+            let servico = JSON.parse(localStorage.getItem(i))
+
+            if(servico != null){
+                servico.id = i
+                arrayServicos.push(servico)
+            }
+        }
+        
+        return arrayServicos
+    }
+}
+
+let bd = new Bd()
+
+function cadastraServico(){
+    //atribuindo os valores dos campos a variáveis
+    let nome = document.getElementById('nome').value
+    let data = document.getElementById('data').value
+    let tipo = document.getElementById('tipo').value
+    let orcamento = document.getElementById('orcamento').value
+    let descricao = document.getElementById('descricao').value
+
+    //instanciando servico com os valores dos campos como parâmetros
+    let servico = new Servico(nome, data, tipo, orcamento, descricao);
+
+    //validando os dados antes de serem cadastrados
+    if(servico.validarDados()){
+        alert('Serviço Cadastrado')
+        // console.log(servico)
+        bd.salvar(servico)
+    }else{
+        alert('Erro! Campos obrigatórios não foram preenchidos.')
+    }
+}
+
+function exibeListaServicos(){
+    let servicos = bd.recuperarTodosRegistros()
+    
+    listaServicos = document.getElementById('lista-despesas')
+
+    servicos.forEach(function(s){
+        let linha = listaServicos.insertRow()
+
+        linha.insertCell(0).innerHTML = s.id
+        linha.insertCell(1).innerHTML = s.nome
+
+        const { format } = require('date-fns');
+
+        let data = s.data
+        const dataFormatada = format(data, 'dd/MM/yyyy');
+        // console.log(dataFormatada);
+
+
+        linha.insertCell(2).innerHTML = data
+
+        switch(s.tipo){
+            case '1': s.tipo = 'Instalação'
+                break
+            case '2': s.tipo = 'Manutenção'
+                break
+            case '3': s.tipo = 'Limpeza'
+                break
+        }
+
+        linha.insertCell(3).innerHTML = s.tipo
+        linha.insertCell(4).innerHTML = s.orcamento
+        linha.insertCell(5).innerHTML = s.descricao
+    })
 }

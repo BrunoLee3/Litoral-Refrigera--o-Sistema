@@ -7,7 +7,32 @@
     <script src="js.js"></script>
     <link rel="stylesheet" href="css.css">
 </head>
-<body onload="exibeServico()">
-    <h1>Lista de Atendimentos</h1>
+<body onload="exibeListaServicos()">
+    
+    <div class="navegacao">
+        <span>Litoral Refrigeração e Climatização</span>
+        <br>
+        <a href="index.html">Cadastro</a> |
+        <a href="planilha.html">Planilha</a>
+    </div>
+
+    <h1>Serviços Registrados</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Orçamento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+
+        <tbody id="lista-despesas">
+
+        </tbody>
+    </table>
 </body>
 </html>
