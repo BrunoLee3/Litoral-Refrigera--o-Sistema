@@ -6,43 +6,61 @@
     <title>Sistema</title>
     <script src="js.js"></script>
     <link rel="stylesheet" href="css.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="navegacao">
-        <span>Litoral Refrigeração e Climatização</span>
-        <br>
-        <a href="index.html">Cadastro</a> |
-        <a href="planilha.html">Planilha</a>
-    </div>
+    <nav class="navbar navbar-expand-lg"  style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Litoral Refrigeração e Climatização</a>
+            <button class="navbar-toggler" type="button"data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Registrar</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="planilha.html">Planilha</a>
+                    </li>
+                </ul>
+            
+          </div>
+        </div>
+    </nav>
 
-    <div class="formulario">
-        <form action="">
-            <h3>Cadastro</h3>
-            Nome do cliente:*
-            <input type="text" name="nomeCliente" id="nome">
-            <br>
-            Data:*
-            <input type="date" name="data" id="data">
-            <br>
-            Serviço:*
-            <select name="tipo" id="tipo">Tipo
-                <option value="">--Selecione--</option>
-                <option value="1">Instalação</option>
-                <option value="2">Manutenção</option>
-                <option value="3">Limpeza</option>
-            </select>
-            <br>
-            Orçamento:*
-            <input type="number" name="orcamento" id="orcamento"> 
-            <br>
-            Descrição:
-            <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea>
-            <br>
-            <input type="button" id="botao" value="Salvar" onclick="cadastraServico()">
-            <br>
+    <div class="espaco"></div>
+
+    <div class="container-sm w-25 p-3 border">
+        <form class="">
+            <h3>Registro de Serviço</h3>
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome do cliente:*</label>
+              <input type="text" class="form-control" placeholder="Nome" id="nome">
+            </div>
+            <div class="mb-3">
+              <label for="data" class="form-label">Data:*</label>
+              <input type="date" class="form-control" id="data">
+            </div>
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Serviço:*</label>
+                <select id="tipo" class="form-select">
+                  <option value="">--Selecione--</option>
+                  <option value="1">Instalação</option>
+                  <option value="2">Manutenção</option>
+                  <option value="3">Limpeza</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="orcamento" class="form-label">Orçamento:*</label>
+                <input type="text" class="form-control" placeholder="0,00" id="orcamento">
+            </div>
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição:</label>
+                <textarea class="form-control" id="descricao" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
-
-        
     </div>
 </body>
 </html>

@@ -93,6 +93,8 @@ function exibeListaServicos(){
     servicos.forEach(function(s){
         let linha = listaServicos.insertRow()
 
+        linha.className = 'border'
+        
         linha.insertCell(0).innerHTML = s.id
         linha.insertCell(1).innerHTML = s.nome
         linha.insertCell(2).innerHTML = s.data

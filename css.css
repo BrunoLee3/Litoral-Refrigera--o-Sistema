@@ -1,19 +1,5 @@
-.formulario{
-    background-color: beige;
-    border: 1px solid red;
-    width: 300px;
-    padding: 20px;
-    margin-left: 450px;
-    margin-top: 10px;
-}
-
-.navegacao{
-    border: 1px solid brown;
-}
-
-form{
-    display: grid;
-    
+.espaco{
+    height: 20px;
 }
 
 h3{
@@ -21,7 +7,6 @@ h3{
 }
 
 th, td{
-    border: 1px solid grey;
     padding: 10px;
 }
 
