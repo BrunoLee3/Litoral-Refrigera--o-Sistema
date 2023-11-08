@@ -95,15 +95,7 @@ function exibeListaServicos(){
 
         linha.insertCell(0).innerHTML = s.id
         linha.insertCell(1).innerHTML = s.nome
-
-        const { format } = require('date-fns');
-
-        let data = s.data
-        const dataFormatada = format(data, 'dd/MM/yyyy');
-        // console.log(dataFormatada);
-
-
-        linha.insertCell(2).innerHTML = data
+        linha.insertCell(2).innerHTML = s.data
 
         switch(s.tipo){
             case '1': s.tipo = 'Instalação'
