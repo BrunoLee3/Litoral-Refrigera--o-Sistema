@@ -86,8 +86,6 @@ function cadastraServico(){
 }
 
 function exibeListaServicos(){
-     
-    
     let servicos = bd.recuperarTodosRegistros()
     
     listaServicos = document.getElementById('lista-despesas')
